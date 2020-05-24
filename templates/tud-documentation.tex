@@ -1,0 +1,38 @@
+\documentclass[english,ngerman,ttfont=roboto]{tudscrmanual}
+\usepackage[backend=bibtex,style=numeric,autocite=plain,sorting=none]{biblatex}
+\addbibresource{literature.bib}
+
+\lstset{%
+  inputencoding=utf8,extendedchars=true,
+  literate=%
+    {ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+    {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+    {~}{{\textasciitilde}}1 {ß}{{\ss}}1
+}
+
+\begin{document}
+\begin{titlepage}
+\faculty{ Computer Science }
+\date{\today}
+
+\author{%
+  Max Musterman%
+  \expandafter\emailaddress\expandafter{revol-xut@protonmail.com}%
+}
+\title{%
+  My Title
+}
+\publishers{\url{https://github.com/SpartanerSpaten/Latex-Template.git}}
+\title{ Other Title }
+
+\maketitle
+
+\end{titlepage}
+
+\tableofcontents
+
+
+\section{ Introduction }
+
+\end{document}
+

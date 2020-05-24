@@ -1,0 +1,126 @@
+\documentclass[10pt,]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{wrapfig}
+
+\usetheme{Dresden}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+
+\title{Why the UK could be considered the birthplace of computer science}
+\author{Tassilo Tanneberger}
+\date{\today}
+
+\graphicspath{{./resources/}}
+
+
+\begin{document}
+\maketitle
+
+\section{Blectchley Park (G.C. and C.S.) and WW2}
+\begin{frame} %%Eine Folie
+	
+  	\frametitle{Bletchley Park (G.C. and C.S.) and WW2 } %%Folientitel
+	
+	\begin{figure}		 
+    	\includegraphics[width=0.3\linewidth]{bletchley_park_map.jpg}
+    	\caption{Geographical location of bletchley park}
+    	\label{fig:blectchley_park}
+	\end{figure}		
+	
+	\begin{itemize}
+		 \item Center of Allied code-breaking (decryption) during the Second World War. 
+		 
+		 \item Penetrated Encryption of the Axis powers this includes the lorenz cipher, Siemens and Halske T52 and Enigma.
+		 
+	\end{itemize}
+	
+\end{frame}
+
+\section{Workload}
+\begin{frame}[fragile] %%Eine Folie
+  	\frametitle{Workload} %%Folientitel
+
+	\begin{figure}		 
+    	\includegraphics[width=0.6\linewidth]{work_load.png}
+    	\caption{Average daily number of Signals to Commands Abroad }
+		\label{fig:solve_statistics}
+	\end{figure}
+	
+	Suplied the military with essential information e.g. about submarines.
+	
+\end{frame}
+
+
+\section{ Achievements of Bletchley Park }
+\begin{frame}[fragile] %%Eine Folie
+  	\frametitle{Achievements of Blectchley Park} %%Folientitel
+  	
+  	\begin{itemize}
+  		\item	Colossus first electronic digital programmable computer (before ENIAC) but not turing-complete built by Tommy Flowers. Was used to break the lorenz cipher.
+  		\item Big advancements in cryptanalysis e.g. Known-Plaintext-Attacks (see cribs)
+		\item 	\begin{equation}
+				\frac{5!}{(5-3)!} * 26^3 * \frac{26!}{(26-20)! * 2 ^ {10} * 10! } = 158.962.555.217.826.360.000
+				\end{equation}
+				All possible ways the enigma could be configured.
+  	\end{itemize}
+
+\end{frame}
+
+\section{ Alan Turing }
+\begin{frame}[fragile] %%Eine Folie
+  	\frametitle{Alan Turing} %%Folientitel
+	\begin{wrapfigure}{r}{}
+    	\includegraphics[width=0.3\linewidth]{Alan_Turing.jpg}
+    	\caption{Alan Turing-1938}
+    	\label{fig:alan_turing}
+	\end{wrapfigure}		
+	Published the paper "Computable Numbers, with an Application to the Entscheidungsproblem“ (28. Mai 1936) where he described the turing maschine and proofed that every problem that can be solved by a algorithm can be solved by the turing maschine. See computability theory. Furthermore did he show (proofe) that the Hilbert Entscheidungsproblem(10th) can have no solution.	\newline \newline
+	Because of his homosexuality he forcefully got sterilized by the UK Government. Suffered from depression the following years and committed suicide in 1954 (Age: 41).
+  	
+\end{frame}
+
+\section{ Questions }
+\begin{frame}[fragile] %%Eine Folie
+\frametitle{Questions} %%Folientitel
+	\begin{itemize}
+		\item What cipher did the colossus decrypted ?
+		
+		\item What are areas alan turing conducted research in ?
+	\end{itemize}		
+\end{frame}
+
+
+\section{ Resources}
+\begin{frame}[fragile] %%Eine Folie
+\frametitle{Resources} %%Folientitel
+ Figure \ref{fig:blectchley_park} Geographical Location of Bletchley Park Source: \url{https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Buckinghamshire_UK_relief_location_map.jpg/220px-Buckinghamshire_UK_relief_location_map.jpg} [1.3.2020]. \newline
+ 
+ Figure \ref{fig:solve_statistics} Statistic about daily workload of bletchley park \url{https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Ultra_Hut3_Graph.png/330px-Ultra_Hut3_Graph.png} [1.3.2020].  \newline
+ 
+ Figure \ref{fig:alan_turing} Image of Alan Turing when he worked in bletchley park \url{https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Alan_Turing_az_1930-as_%C3%A9vekben.jpg/220px-Alan_Turing_az_1930-as_%C3%A9vekben.jpg} [1.3.2020].
+\end{frame}
+
+
+\section{ Refrences}
+\begin{frame}[fragile] %%Eine Folie
+	\frametitle{Refrences} %%Folientitel
+		
+	\begin{thebibliography}{9}
+\bibitem{turing} 
+Turing, A.M. (1936), "On Computable Numbers, with an Application to the Entscheidungsproblem", Proceedings of the London Mathematical Society, 2 (published 1937)
+
+\bibitem{wiki_1} 
+Wikipedia Article on Alan Turing \\\texttt{\url{https://en.wikipedia.org/wiki/Alan_Turing}} [1.3.2020]
+
+\bibitem{wiki_2} 
+Wikipedia Article on Blectchley Park \\\texttt{\url{https://en.wikipedia.org/wiki/Bletchley_Park}} [1.3.2020]
+
+\bibitem{blectchley_park_website} 
+Offical Blectchley Park Website \\\texttt{\url{https://bletchleypark.org.uk/our-story}} [1.3.2020]
+
+\end{thebibliography}	
+\end{frame}
+
+
+\end{document}

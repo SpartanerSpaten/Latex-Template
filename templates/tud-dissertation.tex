@@ -1,0 +1,54 @@
+\documentclass[%
+  english,ngerman,%
+  BCOR=6mm,cdgeometry=no,DIV=13,%
+  cd=lightcolor,
+  cdfont=normalbold,
+  ttfont=true
+]{tudscrreprt}
+%\usepackage{cite}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage[backend=bibtex,style=numeric,autocite=plain,sorting=none]{biblatex}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{svg}
+%\usepackage{isodate}
+\usepackage{hyperref}
+
+\addbibresource{literature.bib}
+
+%\renewcommand\bibname{Literaturverzeichnis}
+%\bibliographystyle{plain}
+\usepackage{movie15} % Needed for gifs
+\usepackage{graphicx}
+\graphicspath{ {./resources/} }
+
+
+\begin{document}
+\begin{titlepage}
+\faculty{Informatik}
+%\department{}
+%\institute{System Engineering}
+\chair{Network Engineering}
+\date{ \today}
+\author{Max Musterman}
+\title{%
+  My title
+}
+\thesis{My Thesis}
+\dateofbirth{Born Some Time}
+\placeofbirth{Where}
+
+\supervisor{ Some other Dude}
+\maketitle
+\end{titlepage}
+
+
+\tableofcontents
+
+\chapter{ First Chapter}
+
+\section{ Some Section }
+
+\end{document}
+

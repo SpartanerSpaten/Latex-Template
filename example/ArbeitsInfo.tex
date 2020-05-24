@@ -1,0 +1,79 @@
+
+\documentclass{article}
+    % General document formatting
+    \usepackage[margin=0.7in]{geometry}
+    \usepackage[parfill]{parskip}
+    \usepackage[utf8]{inputenc}
+    \usepackage{hyperref}
+    
+    % Related to math
+    \usepackage{amsmath,amssymb,amsfonts,amsthm}
+    \usepackage{scrpage2}
+	\pagestyle{scrheadings}
+	\usepackage{graphicx}
+		
+	% Kopfzeile
+	\clearscrheadfoot
+	\ihead{Tassilo Tanneberger}
+	\chead{SRZ Aktueller Arbeits Stand}
+	\ohead{10.5.2020}
+	
+	\ofoot{\pagemark}
+	
+	\newcommand{\RN}[1]{%
+  	\textup{\uppercase\expandafter{\romannumeral#1}}%
+	}
+
+	
+	\graphicspath{ {./resources/} }
+
+
+\begin{document}
+
+
+\section*{ Vorstellung des Projektes }
+Ich würde hier erst mal auf die mein Vorstellungdokument verweisen da sich fundamentale Sachen seitdem nicht verändert haben.
+
+
+\section*{ Akueller Entwicklungs Stand }
+
+
+Der aktuelle Entwicklung Stand ist immer unter \url{https://bitbucket.org/revol-xut/workspace/projects/RUSSEL} einsehbar wobei alle 5 dort gelisteten Repositories zum Projekt gehören:
+
+\begin{itemize}
+	\item Facharbeit LaTeX repo für Theoretischen Teil
+	\item Russel-Interpreter Byte Code Interpreter als Static Linked Library 
+	\item Russel Eigentlicher Unix Daemon und Haupt Repo
+	\item Russel-CLI Russel Command Line Tool
+	\item Russel-Python-Interface API wrapper für einfache Integration sowie Benchmarks in den Examples	
+\end{itemize}
+
+Funktional ist der aktuelle Entwicklungsstand so, dass der einzelne Daemon Aufgaben lösen kann und auch zurückschicken. Es findet aktuell bloß keine Kommunikation zwischen Daemons statt.
+
+\begin{figure}[h]
+	\centering
+			
+	 \includegraphics[scale=0.8]{Result_Speed_Test}
+\end{figure}
+
+Das ist ein Beispiel Run des Speedtestskriptes\footnote{\url{https://bitbucket.org/revol-xut/russel-python-interface/src/master/examples/speed_test.py}} was ich aktuell für experimentelle Benchmarkings und Tests nutze. Das kleine Script sendet eine quadratische Matrix und multipliziert sie mit einem gegeben skalar.
+
+
+\section*{ Zeitplan einordnung }
+
+Meine Todo liste für die nächsten Wochen sieht so aus:
+
+\begin{enumerate}
+	\item .[BUG] occasional message loss
+	\item .[FEATURE] Thread for recv.
+	\item .[FEATURE] Daemon representaion in Scheduling Sys.
+	\item .[FEATURE] Work Balancer
+	\item .[OPTIMIZATION] memcpy entfernen und dealloc umorganisieren.
+	\item .[FEATURE] Daemon Status erfahren und darauf reagieren.
+	\item .[FEATURE] Group Tasks und Variable Caching	
+\end{enumerate}
+
+
+Für meine Todo liste würde ich mit Schulbeginn ungefähr 2-3 Wochen einplanen. Und für das Gesamten Praktischen Teil ungefähr 1 Monat. Somit würde ich bezweifeln das die Arbeit in einem zufriedenstellenden Zustand bis zum 20.5.20 fertig wird
+
+\end{document}

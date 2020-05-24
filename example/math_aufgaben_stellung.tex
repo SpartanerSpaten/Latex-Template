@@ -1,0 +1,115 @@
+\documentclass{article}
+    % General document formatting
+    \usepackage[margin=0.7in]{geometry}
+    \usepackage[parfill]{parskip}
+    \usepackage[utf8]{inputenc}
+    
+    % Related to math
+    \usepackage{amsmath,amssymb,amsfonts,amsthm}
+    \usepackage{scrpage2}
+	\pagestyle{scrheadings}
+	
+	% Kopfzeile
+	\clearscrheadfoot
+	\ihead{Tassilo Tanneberger}
+	\chead{Mathe Referenz}
+	\ohead{20.3.2020}
+	
+	\ofoot{\pagemark}
+	
+	\newcommand{\RN}[1]{%
+  	\textup{\uppercase\expandafter{\romannumeral#1}}%
+	}
+
+
+\begin{document}
+
+
+Gegeben sind die zu einander Windschiefen geraden \( g_1 \) und  \( g_2 \). Berechne die gerade \( f \) die \( g_1 \) und \( g_2 \) schneidet und dabei nur einen minimale Strecke zurück legt. \newline
+
+\( g_1 \cap g_2 = \emptyset \land g_1 \cap f = \{P_1\} \land g_2 \cap f = \{P_2\}\)
+
+\(  \vert \overrightarrow{ P_1 P_2 } \vert \) Soll minimiert werden durch das Wählen der beiden Punkte \( P_1 \) und \( P_2 \) nach den oben beschrieben bedinungen.
+
+
+\begin{equation}
+	g_1 \dots \overrightarrow{x} = \begin{pmatrix}3\\4\\-1\end{pmatrix} + r \cdot \begin{pmatrix}2\\4\\6\end{pmatrix}
+\end{equation}
+
+
+\begin{equation}
+	g_2 \dots \overrightarrow{x} = \begin{pmatrix}-1\\0\\5\end{pmatrix} + s \cdot \begin{pmatrix}-6\\3\\2\end{pmatrix}
+\end{equation}
+
+\vspace*{5cm}
+
+\begin{equation}
+	g_1 \dots \overrightarrow{x} = \overrightarrow{a} \cdot r +  \overrightarrow{b}
+\end{equation}
+
+
+\begin{equation}
+	g_2 \dots \overrightarrow{x} = \overrightarrow{c} \cdot s 
+	+ \overrightarrow{d}
+\end{equation}
+
+\section*{ Allgemein Gültiger Ansatz }
+
+Definieren wir die Ebene \( \varepsilon \) als die Ebene die von der Geraden \( g_1 \) am Punkt definiert von \( g_1(r) \) gespannt wird als: 
+
+\begin{equation}
+	\varepsilon \dots 0 = \overrightarrow{a} \cdot ( \overrightarrow{j} - g_1(r))
+\end{equation}
+
+Wobei hier \( \overrightarrow{j} \) Nur ein anderer Punkt ist.
+
+
+Dieser Punkt soll ja auf \( g_2 \) liegen. Also müssen wir den Schnittpunkt der Ebene \( \varepsilon \) mit \( g_2 \) bestimmen und eine Funktion \( s(r) \) aufstellen (s ist die Laufvariable von \( g_2 \) .
+
+\begin{equation}
+	0 = \overrightarrow{a} \cdot (g_2(s) - g_1(r)) = \overrightarrow{a} \cdot ( \overrightarrow{c} \cdot s +  \overrightarrow{d} - \overrightarrow{a} \cdot r + \overrightarrow{b} ) 
+\end{equation}
+\begin{equation}
+	s(r) = \vert \frac{ \vert \overrightarrow{a} \vert ^ 2 \cdot r + (- a) \cdot ( \overrightarrow{b} + \overrightarrow{d})}{ \overrightarrow{a} \cdot \overrightarrow{c}} \vert
+\end{equation}
+
+Um nun die Distanz Funktion \( d( r ) \) wäre dann:
+
+\begin{equation}
+	d(r) = \vert \overrightarrow{a} \cdot r + \overrightarrow{b} - \overrightarrow{c} \cdot  \vert \frac{ \vert \overrightarrow{a} \vert ^ 2 \cdot r + (- a) \cdot ( \overrightarrow{b} + \overrightarrow{d})}{ \overrightarrow{a} \cdot \overrightarrow{c}} \vert + \overrightarrow{d} \vert
+\end{equation}
+
+Wenn wir das jetzt nun Ausmultiplizieren erhalten wir für \( s(r) \) :
+
+\begin{equation}
+	s(r) = \frac{ ( a_1^2 + a_2^2 + a_3^2 ) \cdot r - a_1 \cdot (b_1 + d_1) - a_2 \cdot (b_2 + d_2 ) - a_3 \cdot (b_3 + d_3) }{ a_1 \cdot c_1 + a_2 \cdot c_2 + a_3 \cdot c_3}
+\end{equation}
+
+Wenn wir nunn unsere Distanz Gleichung haben müssen wir nur noch das Minimum suchen also erste Ableitung ziehen und Null setzen.
+
+\begin{equation}
+	d(r)^{\prime} = \frac{d}{d r} ( d(r) ) = 0
+\end{equation}
+
+Und das nach \( r \) umgestellt gibt uns den Punkt auf \( g_1 \) mit dem Geringsten abstand zu \( g_2 \) Den minimal Abstand erhalten wir durch das einsetzen von \( r \) in \( d(r) \) \newline
+
+\subsubsection*{ Lösung }
+
+\( r = -0.202657  \land d(-0.202657) = 7.1011 \) 
+
+\begin{equation}
+	f \dots \overrightarrow{x} = \begin{pmatrix}1.39205\\3.1894\\6.20265\end{pmatrix} + t \cdot \begin{pmatrix}7.1894\\0.1994\\5.2159\end{pmatrix}
+\end{equation}
+
+\subsubsection*{ Anmerkungen für die Lösung mit Taschenrechner (TI-nspire CX) }
+
+
+Der Taschenrechner berechnet bei \( \vert \overrightarrow{x} \vert \) nicht die länge des Vektorpfeiles sondern wandelt macht die einzenlen Komponenten Positiv. Um das zu Lösen müssen wir die Funktion selber implementieren und das sieht so aus:
+
+\begin{equation}
+	\sqrt{\sum_{k=1}^3 x[k]^2} \rightarrow lengt(x)
+\end{equation}
+
+Wobei \( x \) hier die von \(d(r) \) zurück gegebene Menge ist (Ja der Taschenrechner gibt eine Menge zurück) Deswegen können die Absolut zeichen von Oben bei der Taschenrechner eingabe wegfallen.
+
+\end{document}

@@ -1,0 +1,303 @@
+\documentclass{article}
+    % General document formatting
+    \usepackage[margin=0.7in]{geometry}
+    \usepackage[parfill]{parskip}
+    \usepackage[utf8]{inputenc}
+    
+    % Related to math
+    \usepackage{amsmath,amssymb,amsfonts,amsthm}
+    \usepackage{scrpage2}
+	\pagestyle{scrheadings}
+	
+	% Kopfzeile
+	\clearscrheadfoot
+	\ihead{Tassilo Tanneberger}
+	\chead{Mathe Referenz}
+	\ohead{20.3.2020}
+	
+	\ofoot{\pagemark}
+	
+	\newcommand{\RN}[1]{%
+  	\textup{\uppercase\expandafter{\romannumeral#1}}%
+	}
+
+
+\begin{document}
+% \begin{pmatrix}a\\b\\c\end{pmatrix}
+\section*{Linear Algebra}
+
+\subsection*{Orhtogonalität von Vektoren}
+
+LB S.313 : 7,8
+
+\subsubsection*{Aufgabe 7}
+
+Orthogonalitäten: \( \overrightarrow{a} \perp \overrightarrow{c} ; \overrightarrow{d} \perp \overrightarrow{a} ; \overrightarrow{d} \perp \overrightarrow{b} ; \overrightarrow{d} \perp \overrightarrow{c} ; \overrightarrow{b} \perp \overrightarrow{e} \)
+
+\subsubsection*{Aufgabe 8}
+
+viele mögliche Lösungs Varianten hier ein paar: 
+
+\begin{enumerate}
+
+	\item \( \overrightarrow{AB} = \beta \cdot \overrightarrow{CD} \wedge \overrightarrow{AD} = \beta \cdot \overrightarrow{BC} \Rightarrow \overrightarrow{AD} \parallel \overrightarrow{BC} \wedge \overrightarrow{AB} \parallel \overrightarrow{CD} \Rightarrow \square ABCD \)
+	\item \( \overrightarrow{AB} \cdot \overrightarrow{AD} = 0 \wedge \overrightarrow{CD} \cdot \overrightarrow{CD} = 0 \Rightarrow \square ABCD \)
+	\item \( \overrightarrow{OA} + \overrightarrow{AC} \cdot 0.5 = \overrightarrow{OA} + \overrightarrow{AB} \cdot 0,5 + \overrightarrow{AD} \cdot 0,5 \Rightarrow \square ABCD\)
+\end{enumerate}
+
+\paragraph*{a.) 
+sind \( \square \)} 
+\paragraph*{b.) 
+sind kein \( \square \)} 
+
+\subsection*{Vektor Produkt}
+
+LB S. 316 : 4, 5
+
+\subsubsection*{Aufgabe 4}
+
+\begin{equation}
+	\overrightarrow{n_1}, \overrightarrow{n_2} =  \pm ( \begin{pmatrix}1\\0\\4\end{pmatrix} \times \begin{pmatrix}4\\-1\\2\end{pmatrix} ) = \pm \begin{pmatrix}4\\14\\-1\end{pmatrix}
+\end{equation}
+
+\subsubsection*{Aufgabe 5}
+
+Lösung mit Doppelten Orthogonalitäts Bedingung:
+\begin{equation}
+	\overrightarrow{a} \cdot \overrightarrow{x} = \overrightarrow{b} \cdot \overrightarrow{x} = 0 \Rightarrow  \overrightarrow{x} = \overrightarrow{n} \cdot r  \textbf{ Punkt P aus der Gerade } \overrightarrow{OP} \perp \overrightarrow{a} \wedge \overrightarrow{OP} \perp \overrightarrow{b} 
+\end{equation}
+
+\paragraph*{a.)}
+
+\begin{equation}
+	\overrightarrow{n} = \begin{pmatrix}13\\9\\6\end{pmatrix} \cdot r \mid r \in \mathbb{R}
+\end{equation}
+
+\paragraph*{b.)}
+
+\begin{equation}
+	\overrightarrow{n} = \begin{pmatrix}1\\3\\5\end{pmatrix} \cdot r \mid r \in \mathbb{R}
+\end{equation}
+
+\paragraph*{c.)}
+
+\begin{equation}
+	\overrightarrow{n} = \begin{pmatrix}0\\0\\3\end{pmatrix} \cdot r \mid r \in \mathbb{R}
+\end{equation}
+\newpage
+
+\subsection*{Normalen und Koordinaten Gleichungs schreibweise}
+
+LB S 319 : 5,6
+
+\subsubsection*{Aufgabe 5}
+
+\paragraph*{a.)}
+
+\begin{equation}
+	E_1 : -18 = -12x - 11y - 5z \Leftrightarrow (\overrightarrow{x} - \begin{pmatrix}0\\2\\-1\end{pmatrix} ) \cdot \begin{pmatrix}12\\11\\5\end{pmatrix}  
+\end{equation}
+
+\paragraph*{b.)}
+
+\begin{equation}
+	E_2 : 70 = 7x + 15y + 9z \Leftrightarrow (\overrightarrow{x} - \begin{pmatrix}7\\2\\-1\end{pmatrix} ) \cdot \begin{pmatrix}7\\15\\9\end{pmatrix}  
+\end{equation}
+
+\paragraph*{c.)}
+
+\begin{equation}
+	E_3 : -17 = 7x - 19y - 14z \Leftrightarrow (\overrightarrow{x} - \begin{pmatrix}1\\2\\-1\end{pmatrix} ) \cdot \begin{pmatrix}7\\-19\\-14\end{pmatrix}  
+\end{equation}
+
+\paragraph*{d.)}
+
+Hier war es Sinnvoll den Normalen vektor mit \( \frac{1}{4} \) zu Multiplitzieren.
+
+\begin{equation}
+	E_4 : 123 = 14x - 4y - 3z \Leftrightarrow (\overrightarrow{x} - \begin{pmatrix}9\\3\\-3\end{pmatrix} ) \cdot \begin{pmatrix}14\\-4\\-3\end{pmatrix}  
+\end{equation}
+
+\subsubsection*{Aufgabe 6}
+
+\begin{equation}
+	\overrightarrow{n} = \begin{pmatrix}1\\1\\1\end{pmatrix}  \wedge d = \begin{pmatrix}1\\1\\1\end{pmatrix} \cdot \begin{pmatrix}2\\1\\3\end{pmatrix} = 6
+\end{equation}
+
+\begin{equation}
+	E: 6 = x + y + z
+\end{equation}
+
+\subsection*{Lagebeziehung zwichen Geraden und Ebenen}
+See LB S.326 :3,4
+
+\subsubsection*{Aufgabe 3}
+
+\begin{equation}
+	g \dots \overrightarrow{x} = \begin{pmatrix}3\\4\\-1\end{pmatrix} + t \cdot \begin{pmatrix}2\\4\\6\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+	E_1 : 0 = 2x_1 + x_2 + 3x_3
+\end{equation}
+
+\begin{equation}
+	E_2 : 1 = 2x_1 + x_2
+\end{equation}
+
+\begin{equation}
+	E_3 : 7 = x_2 - x_3
+\end{equation}
+  
+\paragraph*{a.)}
+\begin{equation}
+	E_1 \cap g = \begin{pmatrix}31\\38\\-34\end{pmatrix} \cdot \frac{1}{13}; t =  - \frac{7}{26}
+\end{equation}
+\paragraph*{b.)}
+\begin{equation}
+	E_2 \cap g = \begin{pmatrix}3\\-2\\-31\end{pmatrix} \cdot \frac{1}{4}; t =  - \frac{9}{8}
+\end{equation}
+\paragraph*{c.)}
+\begin{equation}
+	E_3 \cap g = \begin{pmatrix}5\\8\\5\end{pmatrix} ; t = 1
+\end{equation}
+
+Einfaches einsetzen der Geraden gleichung in die Ebene. Ausrechnen von t und den dann wieder in die gerade einsetzen um die Coordinaten des Schnittpunktes zu erhalten.
+
+
+\subsubsection*{Aufgabe 4}
+
+\begin{equation}
+	g \dots \overrightarrow{x} = \begin{pmatrix}3\\4\\-1\end{pmatrix} + t \cdot \begin{pmatrix}1\\-2\\1\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+	E : \overrightarrow{x} = \begin{pmatrix}1\\0\\2\end{pmatrix} + r \cdot \begin{pmatrix}-1\\2\\-1\end{pmatrix} + s \cdot \begin{pmatrix}0\\3\\-2\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+ \overrightarrow{n} = \begin{pmatrix}-1\\2\\-1\end{pmatrix} \times  \begin{pmatrix}0\\3\\-2\end{pmatrix} =  \begin{pmatrix}1\\2\\3\end{pmatrix}
+\end{equation}
+	
+\begin{equation}
+	\begin{pmatrix}1\\-2\\1\end{pmatrix} \cdot \begin{pmatrix}1\\2\\3\end{pmatrix} = 0 \Rightarrow g \parallel E
+\end{equation}
+
+Wenn die Gerade Parallel zur Ebene ist muss der Richtungsvektor der Geraden im Dot Product mit dem Normal Vektor Null ergeben (sind senkrecht zueinander normalvektor und richtungsvektor)
+
+\subsection*{Lagebeziehung zwichen Ebenen}
+See LB S.330 :5
+
+\subsubsection*{Aufgabe 5}
+\paragraph*{a.)}
+\begin{equation}
+	E_1 : \overrightarrow{x} = \begin{pmatrix}8\\0\\2\end{pmatrix} + r \cdot \begin{pmatrix}-4\\1\\1\end{pmatrix} + s \cdot \begin{pmatrix}5\\0\\-1\end{pmatrix}
+\end{equation}
+\begin{equation}
+	E_2 : 6 = x_1 - x_2 + 5x_3
+\end{equation}
+\begin{equation}
+ \overrightarrow{n} = \begin{pmatrix}-4\\1\\1\end{pmatrix} \times  \begin{pmatrix}5\\0\\-1\end{pmatrix} =  \begin{pmatrix}1\\-1\\5\end{pmatrix}
+\end{equation}
+\begin{equation}
+ \textbf{Normalvektor von } E_1 \wedge E_2 \textbf{ sind kolinear } \Rightarrow E_1 \parallel E_2
+\end{equation}
+
+\paragraph*{b.)}
+
+\begin{equation}
+	\RN{1} : E_3 : 6 = 3x_1 + 2x_2 + 5x_3
+\end{equation}
+
+\begin{equation}
+	\RN{2} : E_4 : 10 = 3x_1 - 2x_2 + 4x_3
+\end{equation}
+Für eine saubere Lösung definiert man z.B \(x_3 = t\) was die Variable ist die man Übrig lassen möchte für die Schnittgerade. Für die Lösung per Hand empfielt sich \RN{1} + \RN{2} zum Eliminieren von \(x_2\) und \( \RN{1} + -1 \cdot \RN{2} \) um \(x_1\) zu eliminieren. Danach werden die beiden Gleichungen wieder in eine der Beiden Orginal Gleichungen eingesetzt.
+\begin{equation}
+	E_4 \cap E_3 = \begin{pmatrix}-6\\-1\\4\end{pmatrix} \cdot t + \begin{pmatrix}8 \cdot 3^{-1}\\-1\\0\end{pmatrix}
+\end{equation}
+
+\paragraph*{c.)}
+
+\begin{equation}
+	E_6 : \overrightarrow{x} = \begin{pmatrix}1\\0\\1\end{pmatrix} + r \cdot \begin{pmatrix}-3\\0\\1\end{pmatrix} + s \cdot \begin{pmatrix}1\\4\\1\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+	E_1 \cap E_6 = \begin{pmatrix}4\\4\\0\end{pmatrix} \cdot t + \begin{pmatrix}-17\\0\\7\end{pmatrix}
+\end{equation}
+
+\section*{Stochastik}
+
+\subsection*{Basics}
+
+\subsubsection*{Aufgabe 6}
+LB S. 424 : 6
+
+\( P(T) = \frac{9}{10} \wedge P(\neg T) = P(N) = \frac{1}{10} \)
+
+\paragraph*{a.)}
+
+\begin{tabular}{ |p{2.7cm}|p{1.3cm}|p{1.3cm}|p{1.3cm}|p{1.3cm}|p{1.3cm}|p{1.3cm}|p{1.3cm}|p{1.5cm}|p{1.5cm}|  }
+ \hline
+	Ereigniss & TTT & TNT & TTN & NTT & TNN & NTN & NNT & NNN \\
+	Wahrscheinlichkeit & \(\frac{729}{1000}\) & \(\frac{81}{1000}\)  & \(\frac{81}{1000}\) & \(\frac{81}{1000}\) & \(\frac{9}{1000}\) &  \(\frac{9}{1000}\) &  \(\frac{9}{1000}\) &  \(\frac{9}{1000}\) &  \(\frac{1}{1000}\)\\
+ 
+ \hline
+\end{tabular}
+
+\paragraph*{b.)}
+
+\begin{equation}
+	P(TTT) + P(TNT) + P(TTN) + P(NTT) = \frac{972}{1000}
+\end{equation}
+
+\paragraph*{c.)}
+
+\begin{equation}
+	P(\neg TTT) = 1 - P(TTT) = \frac{271}{1000}
+\end{equation}
+
+\subsection*{Erwartungswert und Standartabweichung}
+
+Erwartungswert:
+
+\begin{equation}
+	\mu = \sum_{i=1}^{n} x_i \cdot  P(X=x_i) \mid n \in \mathbb{N} 
+\end{equation}
+
+Standartabweichung:
+
+\begin{equation}
+	\sigma = \sqrt{\sum_{i=1}^{n} (x_i - \mu)^2 \cdot  P(X=x_i)} \mid n \in \mathbb{N} 
+\end{equation}
+
+LB S 449 : 8, 9
+
+\subsubsection*{Aufgabe 8}
+
+\begin{equation}
+	\mu = 4.15 \wedge \sigma = 2.59374
+\end{equation}
+
+
+\subsubsection*{Aufgabe 9}
+
+! Beträge sind in Euro angegeben nicht in Cent
+
+\paragraph*{a.)}
+\begin{equation}
+	P( \textbf{Gewinn 1 Euro}) = (\frac{1}{2})^2 + 2 \cdot (\frac{1}{4})^2 = \frac{3}{8}
+\end{equation}
+\paragraph*{b.)}
+\begin{equation}
+	\mu = 0.4375 \wedge \sigma = 0.726184
+\end{equation}
+\paragraph*{c.)}
+Gerecht - kein Verlust auf beiden seiten also: \( \mu = 0 \)
+\begin{equation}
+	0 = \frac{3}{8} - x \cdot \frac{5}{8} \Rightarrow x = 0.6
+\end{equation}
+
+Bei einem Einsatz von 60 Cent wäre das Spiel fair.
+\end{document}
