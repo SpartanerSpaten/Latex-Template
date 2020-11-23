@@ -1,0 +1,107 @@
+\documentclass[english,ttfont=true]{tudscrmanual}
+\usepackage[utf8]{inputenc}
+
+%==========================================================
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{scrlayer-scrpage}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{textcomp}
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+\setkomafont{section}{\huge\bfseries}
+
+%==========================================================
+
+\pagestyle{scrheadings}
+
+\title{Transforming Matchstickgraphs}
+\author{Tassilo Tanneberger}
+
+\newcommand{\linia}{\rule{\linewidth}{1pt}}
+\makeatletter
+\renewcommand{\maketitle}{\begin{center}
+\Huge \@title\end{center}
+\linia\\
+{\large\@author\hfill\@date\\}}
+
+%==========================================================
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  aboveskip=3mm,
+  belowskip=3mm,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  tabsize=3,
+}
+
+
+%==========================================================
+
+\begin{document}
+
+\maketitle
+
+\noindent Given is a matchstick graph $ G = \langle V, E \rangle $ where every angle of a edge to the reference plane is a multiple of $\ang{30} $. Read in the graph $ G $ in a data structure defined by you and transform $ G $ so that it becomes a cyclic matchstick graph. That means the every vertex must have at least two attached edges. The resulting graph called $ G_T $ should not contain any unconnected subgraphs. The newly generated graph $ G_T $ should be created by moving the least amount of edges. Display $ G_T $ afterwards.
+
+\subparagraph*{1.)} A minimal amount of potential $ G_T $ candidates should be generated.
+
+\subparagraph*{2.)} Keep the run-time as low as possible. \newline
+
+\noindent This task is heavily modified version of task 4. from the 39. BWINF competition ( see here for more \href{https://bwinf.de/fileadmin/bundeswettbewerb/39/Bundeswettbewerb-Aufgabenblatt.pdf}{information} ).
+
+\subsection*{Example}
+
+\begin{figure}[h]
+\caption{exemplary matchstick graph with 4 edges}
+\center
+\begin{tikzpicture}[auto,node distance=1.5cm]
+    	\tikzstyle{main node}=[circle,fill=gray!15,draw, font=\sffamily\Large\bfseries,minimum size=0mm]
+    	\tikzstyle{--}=[draw=black!, line width=0.1cm]
+  	\node[main node] (a) {};
+  	\node[main node] (b) [ below of = a] {};
+  	\node[main node] (c) [ below right of = b] {};
+  	\node[main node] (d) [ below left of = b] {};
+  	
+  	\draw(a)--(b);
+ 	\draw(b)--(c);
+ 	\draw(b)--(d); 
+ 	\draw(d)--(c); 
+	
+	\draw[-{Triangle[width=18pt,length=8pt]}, line width=10pt, color=red](3,-1.3) -- (5, -1.3);
+	\node[main node] at (7, -0.5) (a2) {};
+  	\node[main node] (b2) [ below of = a2] {};
+  	\node[main node] (c2) [ right of = a2] {};
+  	\node[main node] (d2) [ below of = c2] {};
+  	
+  	\draw(a2)--(b2);
+ 	\draw(a2)--(c2);
+ 	\draw(b2)--(d2); 
+ 	\draw(c2)--(d2); 
+\end{tikzpicture}
+
+\end{figure}
+\end{document}
+

@@ -1,0 +1,450 @@
+% -*- LaTeX -*-
+\documentclass[ngerman]{beamer}
+\usepackage[utf8]{luainputenc}
+\usepackage[TS1,T1]{fontenc}
+\usepackage{babel}
+\usetheme[pagenum, cd2018, noddc]{tud} %,noddc
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{svg}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{amssymb}
+\setlength{\columnsep}{3cm}
+\usepackage[export]{adjustbox}
+\usepackage[shortlabels]{enumitem}
+ \usepackage{vwcol} 
+%\usepackage{kbordermatrix}
+%\usepackage[ruled,vlined]{algorithm2e}
+%\usepackage[parfill]{parskip}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{multicol}
+\usepackage{scalerel,stackengine,amsmath}
+\title[Wiederholung Neurobiologie \& Aktionspotenzial]{Wiederholung Neurobiologie\protect\\\mdseries Aktionspotenzial\strut}
+\author{Tassilo Tanneberger}
+\einrichtung{Lößnitzgymnasium}
+\fachrichtung{Biologie}
+%\institut{Institut für Algebra}
+%\professur{Professur}
+\datecity{Radebeul}
+\date{2.11.2020}
+
+\newcommand*\inmm[1]{\pgfmathsetmacro\inmmwert{#1 / 1mm}\inmmwert}
+\makeatletter
+\newcommand*\inpt[1]{\setlength\@tempdima{#1}\the\@tempdima}
+\makeatother
+
+\AtBeginSection[]{\partpage{\usebeamertemplate***{part page}}}
+
+% Indenation
+\setlength\parindent{24pt}
+
+% Enspricht Symbol
+\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
+    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
+
+% Makes font size small in figures
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+
+% Config for Tikz Animations
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+
+
+% Resource directory
+\graphicspath{ {./resources/} }
+
+% so kbordermatrix uses the right bracets
+%\renewcommand{\kbldelim}{(}% Left delimiter
+%\renewcommand{\kbrdelim}{)}% Right delimiter
+
+%tikz for crossing lines matrix
+\newcommand{\pmark}[1]{\begin{tikzpicture}[overlay,remember picture]\node(#1)at (-1.3em,.7ex){};\end{tikzpicture}}
+\newcommand{\smark}[1]{\begin{tikzpicture}[overlay,remember picture]\draw[line width=0.3mm](#1)--(0,.7ex);\end{tikzpicture}}
+\newcommand{\hpmark}[1]{\begin{tikzpicture}[overlay,remember picture]\node(#1)at (-0.27em,2.1ex){};\end{tikzpicture}}
+\newcommand{\hsmark}[1]{\begin{tikzpicture}[overlay,remember picture]\draw [line width=0.3mm](#1)--(-0.27em,-0.1ex);\end{tikzpicture}}
+
+% Changing Footnote size
+
+\renewcommand{\footnotesize}{\fontsize{8pt}{10pt}\selectfont}
+
+% Function for drawing gears in tikz
+
+\newcommand{\gear}[6]{%
+  (0:#2)
+  \foreach \i [evaluate=\i as \n using {\i-1)*360/#1}] in {1,...,#1}{%
+    arc (\n:\n+#4:#2) {[rounded corners=1.5pt] -- (\n+#4+#5:#3)
+    arc (\n+#4+#5:\n+360/#1-#5:#3)} --  (\n+360/#1:#2)
+  }%
+  (0,0) circle[radius=#6] 
+}
+
+% Command for generating roman numerals
+\newcommand{\RN}[1]{%
+  \textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+% Command for Letters in Enumerations
+\renewcommand{\theenumi}{\Alph{enumi}}
+
+
+\defbeamertemplate{subsection in toc}{bullets}{%
+  \leavevmode
+  \parbox[t]{1em}{\textbullet\hfill}%
+  \parbox[t]{\dimexpr\textwidth-1em\relax}{\inserttocsubsection}\par}
+\defbeamertemplate{section in toc}{sections numbered roman}{%
+  \leavevmode%
+  \MakeUppercase{\romannumeral\inserttocsectionnumber}.\ %
+  \inserttocsection\par}
+
+\setbeamertemplate{section in toc}[sections numbered roman]
+\setbeamertemplate{subsection in toc}[bullets]
+
+% Triangles in itemize
+%\renewcommand{\labelitemi}{$\blacktriangleright$}
+%\setbeamertemplate{itemize items}{triangle} 
+
+% \renewcommand{\labelenumii}{\Roman{enumii}}
+
+\begin{document}
+
+\setbeamertemplate{tud background}[image]{neuron_start.jpg}
+\maketitle
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+
+
+%====================================================
+\frame{\frametitle{Inhalt}\tableofcontents}
+
+%====================================================
+
+\section{Wiederholung}
+
+%====================================================
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{Neuron / Nervenzelle}
+%\setbeamertemplate{itemize items}[triangle]
+\begin{itemize}
+
+\item[$\blacktriangleright$]  Zelle welche Reize überträgt, fungiert als elementare Grundeinheit des Nervensystems.
+
+\item[$\blacktriangleright$]  Sind angeboren $ \Rightarrow $  betreiben keine Zellteilung.
+
+\item[$\blacktriangleright$]  Mensch besitzt eine Gehirnmasse von ca. 1.5 kg, darin sind $ 90 \cdot 10^9 $ Neuronen enthalten.
+
+\end{itemize}
+\end{frame}
+
+%====================================================
+
+
+\subsection{Anatomie}
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{Anatomie }
+\begin{multicols}{2} 
+\begin{figure}[h]
+	\includegraphics[width=.75\textwidth ,left]{neuron_labels.png}
+	\caption{Aufbau eines Neurons [\ref{img:1}]}
+\end{figure}
+
+\columnbreak
+\hspace*{1cm}
+\begin{enumerate}[a:, leftmargin=1.2cm]
+	\item<1-> Dendrit
+	\item<2-> Soma
+	\item<3-> Zellkern
+	\item<4-> Axonhügel
+	\item<5-> Myelinscheide
+	\item<6-> Schwanschezelle
+	\item<7-> Ranvierscher Schnürring
+	\item<8-> Axonterminale o. Synapsen
+\end{enumerate}
+\end{multicols} 
+
+\end{frame}
+
+%====================================================
+\subsection{Funktionsweiße}
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Ruhepotential }
+\begin{multicols}{2}
+\begin{figure}[h]
+	\includegraphics[width=.6\textwidth ,left]{membrane_pot.png}
+	\caption{Membranpotezial mit qualitativen Ionengradienten}
+\end{figure}
+
+\columnbreak
+
+\begin{itemize}
+	\item[$\blacktriangleright$] Konzentration von $ \textsc{Na}^{+} $, $ \textsc{K}^{+} $, $ \textsc{Cl}^{-} $ und $ A^{-} $ definiert wobei $ A^{-} $ organsische Anionen sind.
+	\item[$\blacktriangleright$] Ruhepotenzial: $U \approx -70 \textit{mV}$ 
+\end{itemize}
+\end{multicols}
+\end{frame}
+
+%====================================================
+
+
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Aktionspotenzial \& Axonhügel}
+\begin{itemize}
+
+\item[$\blacktriangleright$] Sammlung verschiedener Erregungspotenziale (von den Dendritten) am Axonhügel.
+
+\item[$\blacktriangleright$] Bei überschreiten der Erregungsschwelle öffnen sich für eine kurze Zeit ($ 1\textsc{ms} $) Natriumionenkanäle welche $ \textsc{Na}^{+} $ Ionen in das Zellinnere pumpen.
+
+\item[$\blacktriangleright$] Dieser Prozess wird \textbf{Depolarisation} gennant, dabei steigt die Spannung auf $U \approx 20 \textit{mV}$ 
+
+\item[$\blacktriangleright$] Der Umkehrprozess wird \textbf{Repolarisation}, genannt dabei fließen $ \textsc{K}^{+} $ in den Interzellularraum.
+
+\item[$\blacktriangleright$] Die erhöhte Permeabilität der Kalium-Ionenkanäle sorgt dafür, dass die Spannung auf $U \approx -91 \textit{mV}$ abfällt (\textbf{Hyperpolarisation})
+
+\item[$\blacktriangleright$] Schließen der Kalium-Ionenkanäle und Angleichen an das \textbf{Ruhepotenzial}.
+
+\end{itemize}
+\end{frame}
+
+%====================================================
+
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{  Aktionspotenzial }
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.8\textwidth ,left]{explanation.png}
+\end{figure}
+
+\end{frame}
+
+%====================================================
+
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Spannungsverlauf eines\\Aktionspotentials }
+% Infantil
+	
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.52\textwidth]{current_chart.png}
+\end{figure}
+	
+\end{frame}
+
+%====================================================
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Erregungsleitung im Axon }
+\begin{multicols}{2}
+\begin{figure}[h]
+	\includegraphics[width=.6\textwidth ,left]{axon_conducting.png}
+	\caption{Membranpotezial als Spannungskurve}
+\end{figure}
+\columnbreak
+
+\begin{itemize}
+	\item[$\blacktriangleright$] Myelinschneide fungieren als Isolator.
+	\item[$\blacktriangleright$] Das elektrische Feld kann sich frei ausbreiten und aktiviert die nächsten spannungsgesteuerten Natriumionen-Kanäle.
+\end{itemize}
+
+\end{multicols}
+\end{frame}
+
+%====================================================
+
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Synapsen }
+
+%\begin{figure}[h]
+%	\includegraphics[width=.7\textwidth ,left]{Neuron_synapse.png}
+%	\caption{Membranpotezial als Spannungskurve}
+%\end{figure}
+\begin{tikzpicture}
+    \draw (0, 0) node[inner sep=0] {\includegraphics[width=8cm]{Neuron_synapse.png}};
+    \draw (1, 1) node {Ionenpumpe};
+    \draw (-3, 1.6) node {Neurotransmitter};
+    \draw (-3.3, 0.6) node {Vesikel};
+    \draw (-3.7, -0.55) node {Calciumkanal};
+    \draw (-3.5, -1.5) node {Zellskelett};
+    \draw (1.7, -1.2) node {Rezeptor};
+    
+     \draw (4, -1.7) node {Postsynapse};
+     \draw (4, 0.7) node {Präsynapse};
+\end{tikzpicture}
+
+\begin{itemize}
+	\item Calciumionen-Kanäle sind spannungsgesteuert, reagieren somit auf ein ankommendes Aktionspotenzial und nehmen $ \textsc{Ca}^{2+} $ Ionen auf. Welches die Synapse anregt Neurotransmitter in den Synaptischen-Spalt auszuschütten.
+\end{itemize}
+
+\end{frame}
+
+%====================================================
+\setbeamertemplate{tud background}[image]{clamp_real.jpg}
+\section{Erforschung des Aktionspotentials}
+\subsection{Hodgkin-Huxley-Modell}
+
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Galvanismus }
+
+\begin{itemize}
+	\item Entdeckung durch Luigi Galvani, das Muskeln sich beim Anlegen einer Spannung kontrahieren.	
+\end{itemize}	
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.6\textwidth]{galvani.jpeg}
+\end{figure}
+	
+\end{frame}
+
+%====================================================
+
+\begin{frame}\frametitle{ Geschichte}
+
+\begin{enumerate}[1:, leftmargin=1.2cm]
+	\item Carlo Matteucci entdeckte das Nervenzellmembranen eine Spannung besitzen und in der Lage sind, einen Gleichstrom zu produzieren.
+	\item Entdeckung des Aktionspotenzials durch Emil du Bois-Reymond in 1843.
+	\item Erste Messung der Nervenleitungsgeschwindigkeit in 1850 durch Helmholtz.
+	\item Santiago Ramón y Cajal zeigte dass, das Nervengewebe aus Zellen besteht. Wiederlegen des Netzwerk Models.
+	\item Die Julius Bernstein Hypothese besagt, dass das Aktionspotenzial durch eine Änderung der Permeabilität der Membran für Ionen entsteht.
+\end{enumerate}
+
+
+\end{frame}
+
+%====================================================
+
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Experminetelle Methoden}
+
+\noindent $\blacktriangleright$ Erweitern der Bernstein Hypothese, dass die Membran unterschiedliche Permeabilitäten für unterschiedliche Ionen besitzt. \newline
+
+\noindent \textbf{Ziele:}
+
+\begin{enumerate}[1:, leftmargin=1.2cm]
+	\item Isolieren einzelner Signale von Neuronen.
+	\item Elektronik, welche so sensitiv und schnell ist, dass sie die Signale wahrnehmen kann
+	\item Filigrane Elektroden um Spannung in einer einzelnen Nervenzellen zu messen.
+\end{enumerate}
+
+\noindent $ \Rightarrow $ Isolierung des Neurons wurde gelöst, indem man Riesenaxone (1mm) von Kalmaren nutzt. \\
+\noindent $ \Rightarrow $ Messung der Spannung mit Hilfe einer Mikro Pipetten Elektrode (voltage clamp).
+
+\end{frame}
+
+%====================================================
+
+%\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+%\begin{frame}\frametitle{ Hodgkin-Huxley-Modell }
+% Nachweiß das die $ \textsc{Na}^{+} $ - Ionenkanäle diskrete Zustände besitzten.
+ 
+%\begin{figure}[h]
+%	\center
+%	\includegraphics[width=.75\textwidth ,left]{Membrane_Circuit.png}
+%\end{figure} 
+ 
+%\end{frame}
+
+%====================================================
+
+\subsection{Patch-Clamp-Technik}
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Patch-Clamp-Technik }
+\begin{multicols}{2}
+\begin{figure}[h]
+	\center
+	\includegraphics[width=.6\textwidth ,left]{Patchclamp.png}
+\end{figure}
+\begin{itemize}
+	\item[$\blacktriangleright$]  Isolieren eines einzelnen Ionenkanals.
+\end{itemize}
+
+\columnbreak
+\begin{itemize}
+	\item[$\blacktriangleright$] Platzieren der Pipette auf einer intakten Zelle (\textbf{Cell-Attached}). Erzeugen eines leichten Unterdruckes womit ein "Gigaseal"\\entsteht, welches einen elektrischen Wiederstand von $ R \approx 10^9 \Omega $ besitzt. 
+\end{itemize}
+
+
+
+\end{multicols}
+
+
+\end{frame}
+%
+%====================================================
+
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Weitere Konfigurationen }
+
+\begin{itemize}
+	\item \textbf{Inside-Out} Sanftes abziehen der Pipette nimmt das Stück der Membran mit.
+	\item \textbf{Whole-Cell} Erhöhen des Unterdruckes oder kurze el. Impulse öffnen den Patch. Die Piptettenflüssigkeit vermischt sich mit dem Cytoplasma. Dadurch misst man die Spannung der gesamten Zelle im vergleich zum Interzellulärem Medium. Außerdem kann man die Zelle von innen heraus Manipulieren.
+	\item \textbf{Outside-Out} Hierbei wölbt sich der Patch nach Außen. Die Flüßigkeit in der Pipette ist das gemisch aus Cytoplasma und Pipettenflüssigkeit. 
+\end{itemize}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.48\textwidth]{Single_channel.png}
+\end{figure}
+
+\end{frame}
+
+%====================================================
+
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Bildquellen 1 }
+
+\begin{itemize}
+	\item[$\blacktriangleright$] \url{https://en.wikipedia.org/wiki/File:Smi32neuron.jpg}\label{img:0} [25.10.2020]
+	\item[$\blacktriangleright$] \url{https://www.leica-microsystems.com/science-lab/the-patch-clamp-technique/} [24.10.2020]
+	\item[$\blacktriangleright$] \url{https://commons.wikimedia.org/wiki/File:Neuron,_LangNeutral.svg} \label{img:1}
+	\item[$\blacktriangleright$] \url{https://en.wikipedia.org/wiki/Luigi_Galvani#/media/File:Galvani-frogs-legs-electricity.jpg} [26.10.2020] 
+	\item[$\blacktriangleright$] \url{https://de.wikipedia.org/wiki/Patch-Clamp-Technik#/media/Datei:Patchclamp.svg} [24.10.2020]
+	\item[$\blacktriangleright$] \url{https://en.wikipedia.org/wiki/Membrane_potential#/media/File:Basis_of_Membrane_Potential2.png} [27.10.2020]
+	\item[$\blacktriangleright$] \url{https://d2wg98g6yh9seo.cloudfront.net/users/224958/224958_GazopuTiTukidiLa3672952815328289.png} [30.10.2020]
+
+\end{itemize}
+
+\end{frame}
+
+%====================================================
+
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Bildquellen 2 }
+
+\begin{itemize}
+	\item[$\blacktriangleright$] \url{https://de.wikipedia.org/wiki/Aktionspotential#/media/Datei:Aktionspotential.svg} [24.10.2020]
+	\item[$\blacktriangleright$] \url{https://en.wikipedia.org/wiki/Synapse#/media/File:SynapseSchematic_lines.svg} [31.10.2020]
+	\item[$\blacktriangleright$] \url{https://en.wikipedia.org/wiki/File:Single_channel.png} [31.10.2020]
+	\item[$\blacktriangleright$] \url{https://en.wikipedia.org/wiki/Action_potential#/media/File:Membrane_Permeability_of_a_Neuron_During_an_Action_Potential.svg} [31.10.2020]
+\end{itemize}
+
+
+\end{frame}
+
+%====================================================
+
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{ Informationsquellen }
+
+\begin{itemize}
+	\item[$\blacktriangleright$] Natura Oberstufe Biologie für Gymnasien S.272
+	\item[$\blacktriangleright$] Linder Biologie 12 S.91
+	\item[$\blacktriangleright$] \url{https://en.wikipedia.org/wiki/Action_potential} [31.10.2020]
+	\item[$\blacktriangleright$] \url{https://de.wikipedia.org/wiki/Hodgkin-Huxley-Modell} [31.10.2020]
+	\item[$\blacktriangleright$] \url{https://de.wikipedia.org/wiki/Synapse}[31.10.2020]
+	\item[$\blacktriangleright$] \url{https://en.wikipedia.org/wiki/Patch_clamp}[31.10.2020]
+\end{itemize}
+
+\end{frame}
+
+%====================================================
+
+\end{document}
+
+
+

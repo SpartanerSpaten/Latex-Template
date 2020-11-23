@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.8in]{geometry}
+
+    % Related to math
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+%\usepackage{scrlayer-scrlayer}
+\usepackage{scrlayer-scrpage}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tikz-uml}
+\usepackage{graphics}
+
+\usepackage{enumerate}
+\pagestyle{scrheadings}
+
+\title{SRZ Test\\Polymorphismus}
+\author{Tassilo Tanneberger}
+\newcommand{\linia}{\rule{\linewidth}{1pt}}
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\huge \@title
+\end{center}
+\linia\\
+{\large\@author\hfill 10.11.2020\\}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Aufgabe 1}
+
+Ein Paradigma relativ synonym zu verstehen zu einem Fundamentalem Stil oder Betrachtungsweiße. Es beschreibt also wie man über ein Problem Nachdenkt oder eine Herangehensweiße.
+
+\begin{enumerate}
+	\item Prozedural (Imperativ)
+	\item Funktional (Deklarativ)
+	\item Objekt Orientiert (Imperativ)
+\end{enumerate}
+
+
+\section*{Aufgabe 2}
+
+\paragraph*{Klasse} ist der "Bauplan" oder Datenstruktur eines Objektes. Dieser Bauplan schreibt z.B vor Welche Attribute oder Methoden Objekte dieser Klasse besitzen. Ein Beispiel wäre z.B der Bauplan eines Autos in diesem gibt es Attribute die das Auto besitzt wie z.B Farbe oder Innenaustatung. Zudem Gibt der Bauplan auch auskunft über Methoden dieses Autos z.B Lenken oder Beschleunigen. 
+
+\paragraph*{Objekt} ist die Instanz einer Klasse also wenn wir bei unserem Beispiel bleiben ein konkretes Auto mit Attributwerten z.B der Farbe Rot. 
+
+\paragraph*{Attribut} ist relativ Synonym zu dem Begriff Eigenschaft. Also eine Eigenschaft die ein Klasse haben kann.
+
+\paragraph*{Attributwert} ist nun der konkrete Wert der für ein Attribut eingesetzt wird.
+
+\section*{Aufgabe 3}
+
+Der Begriff der Botschaft ist in der Praxis meistens ein Methoden aufruf. Wenn man es ein wenig mehr theoretisch betrachtet Schaut sich das Objekt die Botschaft an und reagiert dem entsprechend in dem es z.B eine seiner Methoden heraus sucht und diese ausführt.
+
+\section*{Aufgabe 4}
+Gegebenes Beispiel: "Die Autofahrerin Helga sieht, wie eine Ampel auf rot schaltet und bremst ihr Auto ab, damit es rechtzeitig vor der Ampel stehen blei"\\
+
+\noindent
+Wir können hier eine Abstraktion vornehmen und erzeugen drei Klassen: Mensch, Auto und Ampel. Die Objekte dieser Klassen tretten nun in interaktion. Als erstes sendet das Objekt Ampel der Autofahrerin Helga, welche ein Objekt der Klasse Mensch ist, eine Botschaft. Diese Botschaft ist die Ampel ist rot darauf hin sendet Helga dem Auto eine Botschaft nämlich zu bremsen. Die hier agierende Ampel und Auto sind auch wieder Instanzen der Klasse Auto und Ampel. Entscheident ist das es konkrete Objekte sind mit gewissen Eigenschaften (Attributen) z.B Bremsbeschleunigung für das Auto. Mit dem Begriff der Botschaft oder auch Nachricht wird nun gemeint das die Objekte in Interaktion tretten sie senden Informationen zwichen einander das rote Licht der Ampel wäre ein Beispiel für so eine Information. Kapselung sagt aus das wir ein gewisse Schnittstelle gegeben durch die Klassen deklaration haben aber die Implementation- oder Funktionsdetails nicht sichtbar sind. Die Ampel sendet Helga eine Nachricht wir wissen nicht wie genau Helga die empfangene Nachricht verarbeitet.
+
+
+\section*{Aufgabe 5}
+\scalebox{0.9}{
+
+\begin{tikzpicture}
+\begin{umlpackage}{UML Diagramm}
+
+
+\umlclass{Geraet}{
+	# strom\_verbrauch: uint
+}{
+	+ start(): void\\
+	+ stop(): void
+}
+
+\umlclass[y=-3,x=-3]{digitales Geraet}{
+}{}
+
+\umlclass[y=-3,x=3]{analoges Geraet}{
+}{}
+
+\umlclass[y=-3,x=10]{Geraet mit Aufnahmef}{
+	# sample\_rate: uint
+}{
+	+ start\_recording()\\
+	+ end\_recording()\\
+}
+
+
+\umlclass[y=-9.5,x=1]{CD-Spieler}{
+  + current_time: uint
+}{
+  + oeffne\_laufwerk() : void
+}
+
+\umlclass[y=-7,x=-5]{MP3-Player}{
+  + file: FILE
+}{
+  + play\_mp3(FILE)\\: void
+}
+
+\umlclass[y=-12,x=2]{Multimediageraet}{
+  + n : uint \\ 
+  - t : float
+}{}
+
+\umlclass[y=-6,x=9]{Videokassettenrecorder}{
+  - dreh\_geschwindigkeit: uint
+}{
+  + set\_dreh\_geschwindigkeit(uint): void
+
+}
+
+\umlclass[y=-8.25,x=7]{DVD-Recorder}{
+}{
+  + oeffne\_laufwerk() : void
+}
+
+
+\umlinherit[geometry=-|]{digitales Geraet}{Geraet}
+\umlinherit[geometry=-|]{analoges Geraet}{Geraet}
+
+\umlinherit[geometry=-|]{Videokassettenrecorder}{analoges Geraet}
+\umlinherit[geometry=-|]{Videokassettenrecorder}{Geraet mit Aufnahmef}
+
+\umlinherit[geometry=-|]{DVD-Recorder}{digitales Geraet}
+\umlinherit[geometry=-|]{DVD-Recorder}{Geraet mit Aufnahmef}
+
+\umlinherit[geometry=-|]{CD-Spieler}{digitales Geraet}
+\umlinherit[geometry=-|]{MP3-Player}{digitales Geraet}
+\umlinherit[geometry=-|]{Multimediageraet}{digitales Geraet}
+
+\end{umlpackage}
+\end{tikzpicture}
+
+}
+Ich habe die Klasse analoges Gerät mit dazu genommen damit es Strukturell besser funktioniert da wenn ein Gerät nicht digital ist muss es analog sein und die Klasse hat gefehlt.
+
+\end{document}
