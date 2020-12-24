@@ -6,6 +6,7 @@
     % Related to math
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{scrlayer-scrpage}
+\usepackage{multicol}
 
 \usepackage{tikz}
 
@@ -124,6 +125,120 @@ Wenn \( f''(x_E) = 0 \) ist es kein Extrempunkt sondern ein Sattelpunkt.
 \paragraph{Wendepunkte} Sind die Extrempunkte der ersten Ableitung.
 \section{Integral Rechnung}
 
+\subsection{Definition des Integrals}
+
+$ \mathcal{Z} = \lbrace a = x_0, x1, \dots, x_n = b \rbrace$
+
+\begin{multicols}{2}
+\begin{tikzpicture}
+  \draw[thin,gray!40] (-1,-1) grid (6,5);
+  \draw[<->] (-1,0)--(6,0) node[right]{$x$};
+  \draw[<->] (0,-1)--(0,5) node[above]{$y$};
+  
+  \draw[scale=0.5, domain=-1:7, smooth, variable=\x, blue] plot ({\x}, {(-0.5*((\x-3)*(\x-3))) + 8});  
+  
+  \filldraw[fill=green!20, opacity=0.5] (-0.5,0) node[anchor=north]{}
+  -- (0,0) node[anchor=north]{}
+  -- (0,1.75) node[anchor=north]{}
+  -- (-0.5,1.75) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=green!20, opacity=0.5] (0,0) node[anchor=north]{}
+  -- (0.5,0) node[anchor=north]{}
+  -- (0.5,3) node[anchor=north]{}
+  -- (0,3) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=green!20, opacity=0.5] (0.5,0) node[anchor=north]{}
+  -- (1,0) node[anchor=north]{}
+  -- (1,3.75) node[anchor=north]{}
+  -- (0.5,3.75) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=green!20, opacity=0.5] (1,0) node[anchor=north]{}
+  -- (1.5,0) node[anchor=north]{}
+  -- (1.5,4) node[anchor=north]{}
+  -- (1,4) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=green!20, opacity=0.5] (1.5,0) node[anchor=north]{}
+  -- (2,0) node[anchor=north]{}
+  -- (2,4) node[anchor=north]{}
+  -- (1.5,4) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=green!20, opacity=0.5] (2,0) node[anchor=north]{}
+  -- (2.5,0) node[anchor=north]{}
+  -- (2.5,3.75) node[anchor=north]{}
+  -- (2,3.75) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=green!20, opacity=0.5] (2.5,0) node[anchor=north]{}
+  -- (3,0) node[anchor=north]{}
+  -- (3,3) node[anchor=north]{}
+  -- (2.5,3) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=green!20, opacity=0.5] (3,0) node[anchor=north]{}
+  -- (3.5,0) node[anchor=north]{}
+  -- (3.5,1.75) node[anchor=north]{}
+  -- (3,1.75) node[anchor=south]{}
+  -- cycle;
+\end{tikzpicture}
+
+
+$\overline{S}(f, \mathcal{Z}) =  \sum_{k=1}^{n} M_k(x_k - x_{k-1})$
+
+
+\columnbreak
+\begin{tikzpicture}
+  \draw[thin,gray!40] (-1,-1) grid (6,5);
+  \draw[<->] (-1,0)--(6,0) node[right]{$x$};
+  \draw[<->] (0,-1)--(0,5) node[above]{$y$};
+  
+  \draw[scale=0.5, domain=-1:7, smooth, variable=\x, blue] plot ({\x}, {(-0.5*((\x-3)*(\x-3))) + 8});  
+  
+  \filldraw[fill=red!20, opacity=0.5] (0,0) node[anchor=north]{}
+  -- (0.5,0) node[anchor=north]{}
+  -- (0.5,1.75) node[anchor=north]{}
+  -- (0,1.75) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=red!20, opacity=0.5] (0.5,0) node[anchor=north]{}
+  -- (1,0) node[anchor=north]{}
+  -- (1,3) node[anchor=north]{}
+  -- (0.5,3) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=red!20, opacity=0.5] (1,0) node[anchor=north]{}
+  -- (1.5,0) node[anchor=north]{}
+  -- (1.5,3.75) node[anchor=north]{}
+  -- (1,3.75) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=red!20, opacity=0.5] (1.5,0) node[anchor=north]{}
+  -- (2,0) node[anchor=north]{}
+  -- (2,3.75) node[anchor=north]{}
+  -- (1.5,3.75) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=red!20, opacity=0.5] (2,0) node[anchor=north]{}
+  -- (2.5,0) node[anchor=north]{}
+  -- (2.5,3) node[anchor=north]{}
+  -- (2,3) node[anchor=south]{}
+  -- cycle;
+  \filldraw[fill=red!20, opacity=0.5] (2.5,0) node[anchor=north]{}
+  -- (3,0) node[anchor=north]{}
+  -- (3,1.75) node[anchor=north]{}
+  -- (2.5,1.75) node[anchor=south]{}
+  -- cycle;
+\end{tikzpicture}
+
+$\underline{S}(f, \mathcal{Z}) =  \sum_{k=1}^{n} m_k(x_k - x_{k-1})$
+
+\end{multicols}
+
+Umkehroperation zur Differenzierung.
+
+\paragraph{Grundintegrale}
+
+\begin{align*}
+	&\int a \cdot x^b \,dx = \frac{a}{b+1} \cdot x^{b+1}  + c \\
+	&\int \frac{1}{x} \,dx = \ln \vert x \vert + c\\
+	&\int \sin(x) \,dx = \cos(x) + c\\
+	&\int \cos(x) \,dx = -1 \cdot \sin(x) + c\\
+	&\int a^x \,dx = \frac{1}{\ln a} \cdot a^x + c\\
+	&\int \ln x \,dx = x \cdot \ln x - x + c\\
+\end{align*}
 
 \end{document}
 

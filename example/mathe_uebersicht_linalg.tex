@@ -1,58 +1,305 @@
-\documentclass[12pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[margin=.50in]{geometry}
-\usepackage{textgreek}
 
-    % Related to math
-\usepackage{amsmath,amssymb,amsfonts,amsthm}
-\usepackage{scrpage2}
-
-\usepackage{tikz}
-
-\pagestyle{scrheadings}
-
-\title{Linear Algebra}
-\author{Tassilo Tanneberger}
-\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
-\makeatletter
-\renewcommand{\maketitle}{\begin{center}
-\huge \@title\end{center}
-\linia\\
-{\large\@author\hfill\@date\\}}
-
-\begin{document}
-
-\maketitle
+\chapter{Linear Algebra}
 
 
-\newcommand{\ihat}{\hat{\textbf{\i}}}
-\newcommand{\jhat}{\hat{\textbf{\j}}}
+\section{Vektorräume}
 
-\subsection*{ Vektor }
+Ein Vektorraum ist ein Triple (V, $\oplus$, $\odot$) aus einer infiniten Menge aller Vektoren $ V $ und zwei Operatoren ($ \oplus, \odot $) für die gelten muss $\oplus : V \times V \rightarrow V $ und $\odot : K \times V \rightarrow V$ wobei $ K $ der Körper $K\ (K, +, \cdot)$ ist. \newline
 
-Ein Element eines Vektorraumes welches als ein n-Tupel definiert ist n ist hier die Anzahl an Dimensionen. Ein Vektor zeichnet sich durch einen Richtungssinn und einen Betrag aus.
+Damit $ V $ ein Vektorraum genannt werden kann muss es folgende Kriterien besitzten.
+\paragraph{Vektoraddition:}
 
-\( \overrightarrow{x} = \begin{pmatrix}
-	x_1 \\ x_2 \\ x_3
-\end{pmatrix} \) 
+\begin{itemize}
+	\item Assoziativgesetz: $ u \oplus ( v \oplus w ) = ( u \oplus v ) \oplus w $
+	\item neutrales Element: $ 0_V \in V \Rightarrow v \oplus 0_V = 0_V \oplus v = v $
+	\item Existenz eines Inversen: $ -v \in V \Rightarrow v \oplus (-v) = (-v) \oplus v = 0_V $
+	\item kommutativgesetz: $v \oplus u = u \oplus v $
+\end{itemize}
 
-\subsubsection*{ Betrag }
+\paragraph{Skalarmultiplikation:}
 
-\( \vert \overrightarrow{x} \vert  = \sqrt{\sum_{k=1}^n x_k^2} \)
+\begin{itemize}
+	\item Distributivgesetzt: 
+	\begin{itemize}
+		\item $ \alpha \odot ( u \oplus v) = ( \alpha \odot u ) \oplus ( \alpha \odot v) $
+		\item $ ( \alpha + \beta ) \odot v = ( \alpha \odot v ) \oplus ( \beta \odot v) $
+		\item $ ( \alpha \cdot \beta ) \odot v = ( \alpha \odot v) \odot \beta $
+	\end{itemize} 
+	\item  neutrales Element: $ 1 \odot v = v \ \vert \ 1 \in K $
+\end{itemize}
 
-\subsubsection*{ Einheitsvektor }
 
-Ist definiert als ein Vektor der länge 1 aber erhält seinen orginallen Richtungssinn:
 
-\( \overrightarrow{x_0} = \vert x \vert ^{-1} * \overrightarrow{x} \)
+\section{ Vektor }
 
-\subsubsection*{ Begriffs Notationen}
+Ein Vektor ist ein Element eines Vektorraumes $ v \in V $, welches meistens als ein n-Tupel gehandhabt wird wobei n gleich der Anzahl der Dimensionen ist. Ein Vektor zeichner sich durch einen Richtungssinn und einen Betrag (Länge) aus. Die übliche Notation um zu zeigen das es sich bei einer Variable um einen Vektor handelt ist mit einem Pfeil drüber z.B $ \overrightarrow{x} $.
+
+\begin{align*}
+\overrightarrow{x} &= 
+\begin{pmatrix}
+	x_1 \\ \vdots \\ x_n
+\end{pmatrix} 
+\end{align*} 
+
+
+\noindent Gegeben seinen die beiden Punkte $A$ und $B$, dann beschreibt der Vektor $\overrightarrow{AB}$ genau die Strecke im Raum von der man von $A$ ausgehen sich Bewegen müsste um $B$ zu erreichen. $A$ wird hier als Start- oder Ausgangspunkt und $B$ als Spitze oder Endpunkt bezeichnet.
+
+\subsection{Eigenschaften von Vektoren}
+
+Wir werden hier Eigenschaften von Vektoren erläutern und auf ein paar Grundlegend essentielle Prinzipen erläutern die für das Verständniss folgender Themen von bedeutung sind.
+
+\subsubsection{ Kolinearität }
+
+Zwei Vektoren $v, u$ sind dann linear Abhängig, wenn gilt $ v \cdot r = u \ \vert \ r \in K \ K \leftrightarrow \mathbb{R} $ dies bedeutet das man den Vektor $ v $ um den Faktor $ r $ verlängern bzw. verkürzen kann um $u$ zu erhalten, wenn dieses Kriterium nicht erfüllt ist bezeichnet man $v$ und $u$ als linear unabhängig.
+
+\subsubsection{ Koplanarität}
+
+Drei Vektoren $v, u$ und $w$ werden Koplanar genannt, wenn man aus vielfachen von $u$ und $v$ man $w$ erzeugen kann. Die Gleichung $ w = r \cdot u + s \cdot v $ muss ein Lösung besitzen also $ r \in K \land s \in K $.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+    	
+	\draw[thick,->] (0,0,0) -- (4,0,0) node[anchor=north east]{$x$};
+	\draw[thick,->] (0,0,0) -- (0,5,0) node[anchor=north west]{$y$};
+    \draw[thick,->] (0,0,-5) -- (0,0,1) node[anchor=south]{$z$};
+    
+	\draw[line width=0.5pt,gray](2,4,0)--(2,2,-2) node[anchor=north east]{};
+	\draw[line width=0.5pt,gray](0,-2,-2)--(2,2,-2) node[anchor=north east]{};
+	
+	\draw[line width=2pt,green,-stealth](0,0,0)--(2,2,-2) node[anchor=north west]{$\boldsymbol{w}$};    
+
+	\draw[line width=2pt,blue,-stealth](0,0,0)--(2,4,0) node[anchor=south]{$\boldsymbol{u \cdot 2}$};
+  	\draw[line width=2pt,blue,-stealth](0,0,0)--(0,-2,-2) node[anchor=north east]{$\boldsymbol{v \cdot -1}$};	
+	\draw[line width=2pt,red,-stealth](0,0,0)--(1,2,0) node[anchor=east]{$\boldsymbol{u}$};
+  	\draw[line width=2pt,red,-stealth](0,0,0)--(0,2,2) node[anchor=north east]{$\boldsymbol{v}$};
+	
+\end{tikzpicture}
+\caption{Erzeugen eines neuen Vektors $w$ aus zwei linear unabhängigen Vektoren $v$ und $u$.}
+\end{figure} \label{img:0}
+
+\noindent In dem Beispiel der Grafik 1.1 ist $r = 2$ und $s = -1$. 
+
+
+
+\subsubsection{ Betrag / Länge }
+
+Der Betrag oder auch Länge eines Vektors ist gleich dem euklidischen Abstand der Punkte $A$ und $B$ im Raum. Zur berechnung nutzt man den Satz des Pythagoras an.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+    	
+	\draw[thick,->] (0,0,0) -- (4,0,0) node[anchor=north east]{$x$};
+	\draw[thick,->] (0,0,0) -- (0,5,0) node[anchor=north west]{$y$};
+    \draw[thick,->] (0,0,-5) -- (0,0,1) node[anchor=south]{$z$};
+    
+	\draw[line width=0.5pt,gray](2.5,0,0)--(2.5,0,-4) node[anchor=north east]{};
+	\draw[line width=0.5pt,gray](0,0,-4)--(2.5,0,-4) node[anchor=north east]{};
+
+	\draw[line width=0.5pt,gray](2.5,4,0)--(2.5,4,-4) node[anchor=north east]{};	
+	\draw[line width=0.5pt,gray](0,4,-4)--(2.5,4,-4) node[anchor=north east]{};	
+	\draw[line width=0.5pt,gray](0,0,-4)--(0,4,-4) node[anchor=north east]{};		
+	\draw[line width=0.75pt,black](2.5,0,-4)--(2.5,4,-4) node[anchor=north east]{};	
+	\draw[line width=0.5pt,gray](0,4,0)--(2.5,4,0) node[anchor=north east]{};
+	\draw[line width=0.5pt,gray](0,4,0)--(0,4,-4) node[anchor=north east]{};
+	
+	\draw[line width=0.75pt,black](0,0,0)--(2.5,0,-4) node[anchor=center]{};	
+	
+	\draw[line width=2pt,green,-stealth](0,0,0)--(2.5,4,-4) node[anchor=north west]{$\boldsymbol{\overrightarrow{n}}$};    
+     
+	
+	\someWinkel{2.5,0,0}{45}{135}
+    
+	\draw[line width=2pt,red,-stealth](0,0,0)--(2.5,0,0) node[anchor=north]{$\boldsymbol{x}$};
+  	\draw[line width=2pt,red,-stealth](0,0,0)--(0,4,0) node[anchor=north east]{$\boldsymbol{y}$};
+	\draw[line width=2pt,red,-stealth](0,0,0)--(0,0,-4) node[anchor=north west]{$\boldsymbol{z}$};
+	
+	\draw[line width=0.5pt,gray](2.5,0,0)--(2.5,4,0) node[anchor=north east]{};	
+\end{tikzpicture}
+\caption{Darstellung eines Vektors mit seinen Komponenten im drei dimensionalen Raum}
+\end{figure}
+
+\begin{align*}
+	\vert \overrightarrow{x} \vert  = \sqrt{\sum_{k=1}^n x_k^2}
+\end{align*} 
+
+
+
+\subsection{Besondere Vektoren}
+
+\subsubsection{ Nullvektor }
+
+Der Nullvektor $ \overrightarrow{0} $ ist neutrale Element $ 0_V $  der Vektoraddition. Zudem ist er kein Vektor im traditionellem Sinn, da er keine Richtung besitzt und eine Länge von $0$ hat und somit eher als ein Punkt gesehen werden kann anstelle als ein Pfeil.
+
+
+\subsubsection{ Einheitsvektor }
+
+Ist jeder Vektor mit einer Länge von $\vert \overrightarrow{x}_0 \vert = 1 $.
+
+\begin{align*}
+\xhat = \overrightarrow{x_0} = \frac{1}{\vert \overrightarrow{x} \vert} \cdot \overrightarrow{x} 
+\end{align*}
+
+\section{Basis und Standardbasis}
+
+Eine Basis ist eine Teilmenge eines Vektorraumes $ B \subset V $. Jeder Vektor aus $ V $ lässt sich als Linearkombination der Vektoren aus $ B $ darstellen. Eine Standardbasis oder auch kanonische Basis hat als Vektoren in $ B $ nur Einheitsvektoren $ \overrightarrow{e_n}$  $ \forall v \in B \ \vert v \vert = 1 $.
+
+\begin{align*}
+	\overrightarrow{x} = r_1 \cdot \overrightarrow{e_1}  + \cdots + r_n \cdot \overrightarrow{e_n} = 
+	I_n \cdot 		
+	\begin{pmatrix}
+		r_1 \\ \vdots \\ r_n
+	\end{pmatrix}
+\end{align*}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+    	
+	\draw[thick,->] (0,0,0) -- (2,0,0) node[anchor=north east]{$x$};
+	\draw[thick,->] (0,0,0) -- (0,2,0) node[anchor=north west]{$y$};
+    \draw[thick,->] (0,0,0) -- (0,0,2) node[anchor=south]{$z$};
+    
+	\draw[line width=2pt,red,-stealth](0,0,0)--(1,0,0) node[anchor=north]{$\boldsymbol{\overrightarrow{e_1}}$};
+  	\draw[line width=2pt,red,-stealth](0,0,0)--(0,1,0) node[anchor=north east]{$\boldsymbol{\overrightarrow{e_2}}$};
+	\draw[line width=2pt,red,-stealth](0,0,0)--(0,0,1) node[anchor=north west]{$\boldsymbol{\overrightarrow{e_3}}$};
+	
+\end{tikzpicture}
+\caption{Darstellung der Einheitsvektoren in drei Dimensionen}
+\end{figure}
+
+Die Einheitsvektoren sind alle linear unabhängig von einander und alle haben eine Länge von $ 1 $ somit ist der Faktor vor einem Einheitsvektor gleich der Komponente des Vektors. %TODO clarification
+
+\section{Raumtransformationen und Matritzen}
+Man kann sich Matritzen unterschiedlich Vorstellen. Eine Möglichkeit ist vorstellung ein ein lineares Gleichungsystem die andere als lineare Raumtransformation.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+
+  \draw[thin,gray!40] (-4,-2) grid (4,4);
+  \draw[->, line width=0.5pt,gray] (0,-2)--(0,4) node[above]{$y$};
+  
+  \draw[line width=0.5pt,gray](-4,-2)--(-1,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](-4,0)--(-2,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](-4,2)--(-3,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](-3,-2)--(0,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](-2,-2)--(1,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](-1,-2)--(2,4) node[anchor=north east]{};
+  
+  \draw[line width=0.5pt,gray](0,-2)--(3,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](1,-2)--(4,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](2,-2)--(4,2) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](3,-2)--(4,0) node[anchor=north east]{};
+  
+  
+  \draw[line width=0.5pt,gray](-4,-2)--(-4,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](-3,-2)--(-3,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](-2,-2)--(-2,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](-1,-2)--(-1,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](0,-2)--(0,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](1,-2)--(1,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](2,-2)--(2,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](3,-2)--(3,4) node[anchor=north east]{};
+  \draw[line width=0.5pt,gray](4,-2)--(4,4) node[anchor=north east]{};
+
+  \draw[->] (-4,0)--(4,0) node[right]{$x'$};
+  \draw[->] (-1,-2)--(2,4) node[above]{$y'$};
+  
+  \draw[line width=1pt,red,-stealth](0,0)--(-1,0) node[anchor=west]{};
+  \draw[line width=1pt,red,-stealth](-1,0)--(-2,0) node[anchor=west]{};
+  \draw[line width=1pt,red,-stealth](-2, 0)--(-3,0) node[anchor=west]{};
+ 
+  \draw[line width=1pt,red,-stealth](-3,0)--(-3,1) node[anchor=west]{}; 
+  \draw[line width=1pt,red,-stealth](-3,1)--(-3,2) node[anchor=west]{};
+  
+  \draw[line width=1pt,blue,-stealth](0,0)--(1,2) node[anchor=west]{};
+  \draw[line width=1pt,blue,-stealth](1,2)--(2,4) node[anchor=west]{};
+  
+  \draw[line width=1pt,blue,-stealth](2,4)--(1,4) node[anchor=west]{};
+  \draw[line width=1pt,blue,-stealth](1,4)--(0,4) node[anchor=west]{};
+  \draw[line width=1pt,blue,-stealth](0,4)--(-1,4) node[anchor=west]{};
+
+
+  \draw[line width=2pt,red,-stealth](0,0)--(-3,2) node[anchor=north east]{$\boldsymbol{\overrightarrow{n_{old}}}$};
+  \draw[line width=2pt,blue,-stealth](0,0)--(-1,4) node[anchor=east]{$\boldsymbol{\overrightarrow{n_{new}}}$};
+\end{tikzpicture}
+\caption{Darstellung einer Raumtransformation}
+\end{figure}
+
+\begin{align*}
+	A = \begin{bmatrix}
+		1 & 1 \\
+		0 & 2
+	\end{bmatrix}
+\end{align*}
+
+\subsection{Matrix Vektor Produkt}
+
+Die druchführung einer Raumtransformation ist das Matrix-Vektor Produkt, wobei die Matrix die Raumtransformation beschreibt und der Vektor das zu transformierende Objekt repräsentiert. Mathematische Formulierung: $ K^{m \times n} \times K^n \rightarrow K^m $
+
+\begin{align*}
+	A \cdot \overrightarrow{n} = 
+	\begin{bmatrix}
+		1 & 1 \\
+		0 & 2
+	\end{bmatrix} \cdot 
+	\begin{pmatrix}
+		-3 \\ 2
+	\end{pmatrix} = -3 \cdot 
+	\begin{bmatrix}
+		1 \\ 0	
+	\end{bmatrix} + 2 \cdot
+	\begin{bmatrix}
+		1 \\ 2
+	\end{bmatrix} =
+	\begin{pmatrix}
+		-1 \\ 4
+	\end{pmatrix} 
+\end{align*}
+
+\noindent In einer Matrix werden also ein getragen wo die Einheitsvektoren der Standardbasis nach der Transformation landen.
+
+\begin{itemize}
+	\item Assoziativgesetzt 
+	\begin{itemize}
+		\item $ A \cdot ( B \cdot x ) = ( A \cdot B ) \cdot x $
+		\item $ \alpha ( A \cdot x ) = ( \alpha \cdot A ) \cdot x = A \cdot (a \cdot x) $
+	\end{itemize}	 
+	\item Distributivgesetzt
+	\begin{itemize}
+		\item $ ( A + B ) \cdot x = A \cdot x + B \cdot x $
+		\item $ A \cdot ( x + y ) = A \cdot x + A \cdot y $
+	\end{itemize}	
+\end{itemize}
+
+\subsection{Matrix Produkt}
+
+Sagen wir haben zwei Transformationen die wir nacheinander Ausführen diese beiden Transformationen können wir auch eine 
+
+
+
+
+\section{Geraden}
+
+\section{Skalarprodukt}
+
+\section{Determinanten}
+
+\section{Kreuzprodukt}
+
+\section{Spatprodukt}
+
+\section{Ebenen}
+
+\section{Lagebeziehungen}
+
+
+
+\subsubsection{ Begriffs Notationen}
 
 \paragraph*{Ortsvektor} \( \overrightarrow{OX} \) ist definiert als der Vektor vom Koordinanten Ursprung der zum Punkt X zeigt. \newline
-
-\paragraph*{Kolinear / Linear Abhängig} \( \overrightarrow{a} = \overrightarrow{b} \cdot r \vert r \in \mathbb{R}\) 
-
-\paragraph*{Koplanar} \( \overrightarrow{a} = \overrightarrow{b} \cdot r + \overrightarrow{c} \cdot s \vert r \in \mathbb{R} \land s \in \mathbb{R} \)
 
 \subsection*{ Geraden }
 Definiert als:
@@ -327,5 +574,3 @@ Der Richtungs Vektor der Schnittgeraden zweier Ebenen ist das Kreuzprodukt der B
 
 Richtungs Vektor einer Geraden als Normalen Vektoren einer Ebene betrachten für Berechnungen wie min Abstand zweier Windschiefer geraden.
 
-
-\end{document}

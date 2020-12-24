@@ -1,0 +1,211 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.8in]{geometry}
+
+    % Related to math
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+%\usepackage{scrlayer-scrlayer}
+\usepackage{scrlayer-scrpage}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tikz-uml}
+\usepackage{graphics}
+
+\usepackage{enumerate}
+\pagestyle{scrheadings}
+
+\title{SRZ Klausur\\Objektorientiere Programmierung \& Polymorphismus}
+\author{Tassilo Tanneberger}
+\newcommand{\linia}{\rule{\linewidth}{1pt}}
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\huge \@title
+\end{center}
+\linia\\
+{\large\@author\hfill 8.12.2020\\}}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+%\lstset{frame=tb,
+%  aboveskip=3mm,
+%  belowskip=3mm,
+%  columns=flexible,
+%  basicstyle={\small\ttfamily},
+%  numbers=none,
+%  numberstyle=\tiny\color{gray},
+%  keywordstyle=\color{blue},
+%  commentstyle=\color{dkgreen},
+%  stringstyle=\color{mauve},
+%  breaklines=true,
+%  tabsize=3,
+%}
+
+\lstset{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showtabs=false, 
+    frameround=ffff,                 
+    tabsize=3,
+    columns=flexible,
+    showstringspaces=false
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{Aufgabe 1}
+\subsubsection*{a.)}
+Die Funktion ist einen \verb|public| Methode der Klasse \verb|TBruch|, das erkennt man daran das die Funktion direkt auf die Member-Variablen \verb|Nenner| und \verb|Zaehler| direkt zugreifen kann. Diese Methode nimmt ein Argument ein Objekt der Klasse \verb|TZahl| dies kann somit nach Liskovschen Subsitutions Prinzip (LSP) auch ein Objekt der Klasse \verb|TBruch| sein, da diese Klasse von \verb|TZahl| geerbt hat. Die Methode gibt ein Objekt des Typen \verb|TZahl| zurück. Es ist ersichtlich das \verb|TBruch| eine abgleite Klasse ist das kann man an verschieden Dingen erkennen z.B Zeile 3 wo nach dem echten Typ hinter \verb|s2| geschaut wird oder 4 wo man \verb|s2| in ihren eigentlichen Typ umwandelt. Dies kann man nur mit "verwanden" Datentypen.
+
+
+\subsubsection*{b.)}
+\lstset{language=Java}
+\begin{lstlisting}[language=Java]
+TBruch b = new TBruch(3, 4); // b ist vom Typ TBruch
+TZahl a = b.plus(new TBruch(1, 4)); // s2 wird hier direkt im Funktionsaufruf erzeugt auch TBruch
+// a ist auch vom typ TBruch kann aber hier wieder durch das LSP durch TZahl ausgedrückt werden
+\end{lstlisting}
+
+\subsubsection*{c.)}
+Diese Zeile macht eine Fallunterscheidung abhängig davon ob es sich bei \verb|s2| um einen Objekt der Klasse \verb|TZahl| oder \verb|TBruch| handelt. Dies ist wichtig, da unterschiedliche Funktion benötigt werden um mit reinen Rationalen Zahlen oder Brüchen umzugehen z.B Muss bei dem Bruch der gemeinsame Nenner gebildet werden.
+
+\subsubsection*{d.)}
+In dieser Zeile wird die Variable \verb|s2| zu einem \verb|TBruch| umgewandelt (type cast) und danach die Methode \verb|.getNenner()| aufgerufen. Die Typumwandlung ist wichtig, da die Klasse \verb|TZahl| die Methode  \verb|.getNenner()| nicht implementiert bzw. besitzt. Der Rückgabewert des Methoden auf Rufs wird dann multiplikativ mit \verb|Nenner|, welche einen Member-Variable des aufgerufen Objektes ist verknüpft. Mathematisch betrachtet bildet diese Zeile also den gemeinsamen Nenner der beiden Brüche. 
+
+\section*{2}
+\subsubsection*{a.)}
+
+\scalebox{0.9}{
+
+\begin{tikzpicture}
+\begin{umlpackage}{UML Diagramm}
+
+
+\umlclass[y=0,x=3]{TFenster}{
+	# sizex: uint\\
+	# sizey: uint
+}{
+	+ render(): void
+}
+
+\umlclass[y=-3,x=-2]{TEingabe}{
+    # text: Text\\
+}{
+	+ getText(): Text
+}
+
+\umlclass[y=-3,x=8]{TKnopf}{
+	# ptr: void(*)() //Pointer
+}{
+	+ setPtr(void(*)() ptr)
+}
+
+
+
+
+\umlclass[y=-7,x=-2]{TDialog}{
+   # butto-ok: TKnopf\\
+   # butto-stop: TKnopf\\
+   # input: TEingabe\\
+}{
+   # getText(): String
+}
+
+\umlclass[y=-7,x=6]{TMultiFenster}{
+	# array: List
+}{
+	+ add(TFenster): void \\
+	+ remove(TFenster): void\\
+	+ display(): void
+}
+
+
+\umlinherit[geometry=-|]{TEingabe}{TFenster}
+\umlinherit[geometry=-|]{TKnopf}{TFenster}
+\umlinherit[geometry=-|]{TDialog}{TFenster}
+\umlinherit[geometry=-|]{TMultiFenster}{TFenster}
+
+% Syntax A benoetigt B
+\draw [tikzuml dependency style] ([yshift=0mm]TDialog.north) -- (TEingabe.south);
+\draw [tikzuml dependency style] ([yshift=0mm]TDialog.east) --  (TKnopf.south);
+\draw [tikzuml dependency style] ([yshift=0mm]TMultiFenster.north) -- (TFenster.south);
+
+\end{umlpackage}
+\end{tikzpicture}
+
+}
+
+
+\subsubsection*{b.)}
+\verb|TEingabe| erbt von \verb|TFenster|, da \verb|TFenster| nur ein Standardfenster ist diese Funktionalität aber auch von \verb|TEingabe| benötigt wird. Man könnte es auch anders Formulieren indem man sagt \verb|TEingabe| erweitert (Funktional) \verb|TFenster| somit ist \verb|TEingabe| ein spezielle Version / Form von \verb|TFenster| zudem kann \verb|TEinagbe| auch die Funktionen aus \verb|TFenster| zurückgreifen.
+
+\subsubsection*{c.)}
+Wir haben hier den Objektorientierten Zusammenhang von \verb|TMultiFenster| benötigt \verb|TFenster| es also Objekte von \verb|TFenster| in sich tragen kann (siehe Code Snipped).
+
+\lstset{language=Java}
+\begin{lstlisting}[language=Java]
+public class TMultiFenster extends TFenster{
+	private ArrayList<TFenster> fenster_widgets = new ArrayList();
+	
+	public TMultiFenster(ArrayList<TFenster> init_fenster_widgets){...};
+	
+	public int place_widget(TFenster widget){...};
+	public void remove_widget(int index){...};
+	public void display() {...};	
+	
+}
+\end{lstlisting}
+
+Somit brauchen wir die Möglichkeit neue \verb|TFenster| zu platzieren dies kann in diesem Beispiel jetzt über den Konstruktor oder die Methode \verb|place_widget| passieren die dort gegeben Objekte werden in die \verb|private| Member-Variable \verb|fenster_widget plaziert| der Index also der Ort im der Liste wird zurückgegeben. Zudem brauchen wir eine Methode um "Widget" auch wieder zu entfernen das über nimmt die Methode \verb|remove_widget|, welche das Objekt an dem gegeben Index löscht. Logischerweiße ist eine Funktion (\verb|display|) um alle Elemente der Liste anzuzeigen dann auch von Nöten.
+
+\section*{Aufgabe}
+\subsubsection*{a.)}
+
+
+\begin{lstlisting}
+Hallo ich heiße Objekt A und bin eine Instanz von Klasse1.
+Hallo ich heiße Objekt B und bin eine Instanz von Klasse2.
+\end{lstlisting}
+
+Eigentlich ist die Funktion \verb|Ausgabe()| nicht als \verb|virtual| (virtuelle Methode) gekennzeichnet.
+
+\subsubsection*{b.)}
+
+Initial wird Speicherplatz für ein Objekt des Types \verb|TKlasse2| reseviert, welcher durch die Variable \verb|o2| zugänglich ist. Danach rufen wir den Konstruktor der Klasse \verb|TKlasse2| auf und übergeben ihm die Zeichenkette "Objekt B" die als Variable \verb|s| nutzbar ist. \verb|TKlasse2| hat von \verb|TKlasse1| geerbt und ruft und in seinem Konstruktor den (Super)Konstruktor der Klasse \verb|TKlasse1| auf und übergibt diesem die Zeichenkette (\verb|s|). Die Klasse \verb|TKlasse1| speichert die Zeichenkette in der Member-Variable \verb|name|. 
+
+\subsubsection*{c.)}
+Es würde immer noch die Gleiche Ausgabe erzeugen, da die gleiche Virtuelle Methoden Tabelle wie zuvor vorliegt und die Laufzeit umgebung bzw. der Java Interpreter in der Lage ist aus der Virtuellen Methoden Tabelle (VMT) die richtigen Funktions-Pointer heraus zusuchen.
+
+\subsection*{d.)}
+Polymorphie bedeutet das Objekte anscheinbar der gleichen Typus (Basisklasse) unterschiedlich auf eine Botschaft reagieren können also praktisch bedeutet das andere Programm Stücke werden ausgeführt. Praktisch wird dies durch eine Virtuelle Methoden Tabelle umgesetzt in dieser Methoden Tabelle werden zu jeder Methode ihr Funktions-Pointer gespeichert also die Speicher Addresse wo ihr Quellcode steht. Bei einem Aufruf der Funktion wie im Beispiel auf Zeile 18 schaut die CPU / der Interpreter in diese Tabelle und sucht den Richtigen Funktions-Pointer raus. Jedes Objekt hat also eine Eigene VMT und Abhängig davon mit welchem Typen die Klasse Initzialisiert wurde kann diese auch von Objekt zu Objekt unterschiedlich sein. Das Initialisieren oder Instanzieren einen Objektes wird durch den Konstruktor gemacht, welcher die VMT setzt und das initialisierte Objekt zurück gibt. Dies was gerade beschrieben wurde nennt man späte Bindung und wird häufig genutzt auch ganze Bibliotheken können Dynamisch so gebunden werden (DLL oder Shared Objects .so). Frühe Bindung ist wenn zur Compile Time fest steht, welche Funktion aufgerufen werden muss und dies direkt in das Compiled Programm eingebaut wird auch binding genannt (zusammen binden der .o Object Datein).
+
+
+
+
+\end{document}

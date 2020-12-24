@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.8in]{geometry}
+
+    % Related to math
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+%\usepackage{scrlayer-scrlayer}
+\usepackage{scrlayer-scrpage}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%\usepackage{tikz-uml}
+\usepackage{graphics}
+
+\usepackage{enumerate}
+\pagestyle{scrheadings}
+
+\title{Title}
+\author{Revol-Xut}
+\newcommand{\linia}{\rule{\linewidth}{1pt}}
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\huge \@title
+\end{center}
+\linia\\
+{\large\@author\hfill 10.11.2020\\}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Section 1}
+
+\end{document}

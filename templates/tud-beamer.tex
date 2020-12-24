@@ -1,0 +1,111 @@
+% -*- LaTeX -*-
+\documentclass[ngerman]{beamer}
+\usepackage[utf8]{luainputenc}
+\usepackage[TS1,T1]{fontenc}
+\usepackage{babel}
+\usetheme[pagenum, cd2018]{tud} %,noddc
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{tikz}
+%\usepackage{kbordermatrix}
+\usepackage[ruled,vlined]{algorithm2e}
+%\usepackage[parfill]{parskip}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{multicol}
+\usepackage{scalerel,stackengine,amsmath}
+
+\title[Title]{Title\protect\\\mdseries Subtitle\strut}
+\subtitle{SubSubTitle}
+\author{Author}
+%\einrichtung{Lößnitzgymnasium}
+\fachrichtung{}
+%\institut{Institut für Algebra}
+%\professur{Professur}
+\datecity{Dresden}
+\date{14.9.2020}
+
+\newcommand*\inmm[1]{\pgfmathsetmacro\inmmwert{#1 / 1mm}\inmmwert}
+\makeatletter
+\newcommand*\inpt[1]{\setlength\@tempdima{#1}\the\@tempdima}
+\makeatother
+
+\AtBeginSection[]{\partpage{\usebeamertemplate***{part page}}}
+
+% Indenation
+\setlength\parindent{24pt}
+
+% Enspricht Symbol
+\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
+    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
+
+% Makes font size small in figures
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+
+% Config for Tikz Animations
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+
+% Resource directory
+\graphicspath{ {./resources/} }
+
+% so kbordermatrix uses the right bracets
+%\renewcommand{\kbldelim}{(}% Left delimiter
+%\renewcommand{\kbrdelim}{)}% Right delimiter
+
+%tikz for crossing lines matrix
+\newcommand{\pmark}[1]{\begin{tikzpicture}[overlay,remember picture]\node(#1)at (-1.3em,.7ex){};\end{tikzpicture}}
+\newcommand{\smark}[1]{\begin{tikzpicture}[overlay,remember picture]\draw[line width=0.3mm](#1)--(0,.7ex);\end{tikzpicture}}
+\newcommand{\hpmark}[1]{\begin{tikzpicture}[overlay,remember picture]\node(#1)at (-0.27em,2.1ex){};\end{tikzpicture}}
+\newcommand{\hsmark}[1]{\begin{tikzpicture}[overlay,remember picture]\draw [line width=0.3mm](#1)--(-0.27em,-0.1ex);\end{tikzpicture}}
+
+% Changing Footnote size
+
+\renewcommand{\footnotesize}{\fontsize{8pt}{10pt}\selectfont}
+
+% Function for drawing gears in tikz
+
+\newcommand{\gear}[6]{%
+  (0:#2)
+  \foreach \i [evaluate=\i as \n using {\i-1)*360/#1}] in {1,...,#1}{%
+    arc (\n:\n+#4:#2) {[rounded corners=1.5pt] -- (\n+#4+#5:#3)
+    arc (\n+#4+#5:\n+360/#1-#5:#3)} --  (\n+360/#1:#2)
+  }%
+  (0,0) circle[radius=#6] 
+}
+
+% Command for generating roman numerals
+\newcommand{\RN}[1]{%
+  \textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+\begin{document}
+
+%====================================================
+\section*{Section0}
+\maketitle
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+
+%====================================================
+\frame{\frametitle{Contents}\tableofcontents}
+
+%====================================================
+
+\section{Section1}
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
+\begin{frame}\frametitle{Title}\framesubtitle{Subtitle}
+
+\textbf{Some bold font}
+
+
+\end{frame}
+
+
+\end{document}
+
